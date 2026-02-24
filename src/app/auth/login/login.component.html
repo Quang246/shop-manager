@@ -1,0 +1,32 @@
+<div class="login-container" nz-row nzJustify="center" nzAlign="middle">
+  <div nz-col [nzXs]="24" [nzSm]="16" [nzMd]="12" [nzLg]="8" [nzXl]="6">
+    <nz-card [nzTitle]="'Login'" [nzExtra]="extraTemplate">
+      <form nz-form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="emailErrorTpl">
+            <nz-input-group nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="email" placeholder="Email" />
+            </nz-input-group>
+            <ng-template #emailErrorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">Input is required</ng-container>
+              <ng-container *ngIf="control.hasError('email')">Input must be valid email</ng-container>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="'Please input your Password!'">
+            <nz-input-group nzPrefixIcon="lock">
+              <input type="password" nz-input formControlName="password" placeholder="Password" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button nzType="primary" [nzLoading]="false" [disabled]="!loginForm.valid" nzBlock>Log in</button>
+      </form>
+    </nz-card>
+    <ng-template #extraTemplate>
+      <!-- Optional extra content -->
+    </ng-template>
+  </div>
+</div>
